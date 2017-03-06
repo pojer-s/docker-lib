@@ -2,7 +2,7 @@
 
 cd `dirname $0`
 
-for i in 4.7.2-apache 4.7.1-apache 4.7.0-apache ; do
+for i in 4.6.1-apache 4.7.2-apache 4.7.1-apache 4.7.0-apache ; do
     mkdir -p "$i-wp"
     cd "$i-wp"
     cat <<EOF > Dockerfile
