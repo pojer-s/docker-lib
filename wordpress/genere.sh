@@ -8,6 +8,7 @@ for i in 4.6.1-apache 4.7.2-apache 4.7.1-apache 4.7.0-apache ; do
     cat <<EOF > Dockerfile
 FROM wordpress:$i
 
+RUN apt-get update && apt-get install -y libmcrypt-dev && docker-php-ext-install mcrypt
 RUN curl -o /usr/local/bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x /usr/local/bin/wp
 EOF
     cat <<EOF > Makefile
