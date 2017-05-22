@@ -1,4 +1,4 @@
-FROM wordpress:4.7.1-apache
+FROM wordpress:4.5.3-apache
 
 RUN apt-get update && apt-get install -y libmcrypt-dev libjpeg-dev libpng12-dev libmagickwand-dev && docker-php-ext-install mcrypt pdo_mysql mysqli
 RUN pecl install imagick && echo "extension=imagick.so" > /usr/local/etc/php/conf.d/ext-imagick.ini
