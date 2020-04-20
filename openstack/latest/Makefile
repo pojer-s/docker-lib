@@ -1,16 +1,16 @@
-NAME = spojer/c9
-VERSION = master
+NAME = spojer/openstack
+VERSION = latest
 
-.PHONY: all build tag_latest release
+.PHONY: all build tag_latest release clean builddoc
 
-all: build
+all: build push
 
 build:
 	docker build -t $(NAME):$(VERSION) .
 
-tag_latest:
-	docker tag $(NAME):$(VERSION) $(NAME):latest
-
-release: tag_latest
+push:
 	@if ! docker images $(NAME) | awk '{ print $$2 }' | grep -q -F $(VERSION); then echo "$(NAME) version $(VERSION) is not yet built. Please run 'make build'"; false; fi
-	docker push $(NAME)
+	docker push $(NAME):$(VERSION)
+
+clean:
+	docker rmi $(NAME)
